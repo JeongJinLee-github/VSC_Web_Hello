@@ -1,23 +1,49 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>티에이치씨정보처리컴퓨터학원</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1><span>T</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></h1>
+    <h1><span>K</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></h1>
     <form action="https://www.google.com/search" method="GET">
         <div class="mx-auto mt-5 search-bar input-group mb-3">
-            <input name="q" type="text" class="form-control rounded-pill" placeholder="Google 검색 또는 URL 입력" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <input name="q" type="text" class="form-control rounded-pill" placeholder="Google 검색 또는 URL 입력"
+                aria-label="Recipient's username" aria-describedby="button-addon2">
             <!--
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
              </div>
             -->
+
         </div>
     </form>
+    <script src="https://code.jquery.com/jquery-3.5.0.js" -->
+        integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" 
+        crossorigin="anonymous"></script>
+<!-- <script>
+        $.ajax({
+            url: "test.html",
+            context: document.body
+        }).done(function () {
+            $(this).addClass("done");
+        });
+    </script> -->
+    <img id="cloaking" src="./images/cloaking.png" alt="cloaking">
+    <img id="wraith" src="./images/wraith.png" alt="wraith">
+    <script>
+        $(document).ready(function(){
+          $("#cloaking").click(function(){
+            $("#wraith").toggle();
+          });
+        });
+        </script>
 </body>
+
 </html>
