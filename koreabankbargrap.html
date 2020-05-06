@@ -1,0 +1,52 @@
+<link type="text/css" rel="stylesheet" href="/css/openapi/c3.min.css"/>
+<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/js/d3.min.js"></script>
+<script type="text/javascript" src="/js/c3.min.js"></script>
+<script type="text/javascript">
+	$.ajaxPrefilter('json', function(options, orig, jqXHR){
+		return 'jsonp';
+	});
+	$.ajax({
+		url         : 'http://ecos.bok.or.kr/api/StatisticSearch/3BD37QCTTUI5XTKXDNGI/json/kr/1/10/010Y002/MM/201101/201106/AAAA11/',
+		type        : 'GET',
+		dataType    : 'json',
+		success     : function (result) {
+			makeBarChart(result);
+		},
+		error       : function (result) {
+			console.log("error >> " + $(result).text());
+		}
+	});
+	
+	function makeBarChart(jsonData) {
+		var rows = jsonData.StatisticSearch.row;
+		var datas = new Array();
+		var xColumn = new Array();
+		
+		xColumn.push('x')
+		datas.push(rows[0].ITEM_NAME1);
+		
+		for (var row in rows) {
+			xColumn.push(rows[row].TIME);
+			datas.push(rows[row].DATA_VALUE);
+		}
+		
+		var chart = c3.generate({
+			bindto: '#chart1',
+			data : {
+				type : 'bar',
+				x : 'x',
+				columns : [
+				    xColumn,
+					datas
+				]
+			},
+			bar : {
+				width : {
+					radio : 0.5
+				}
+			}
+		});
+	}
+</script>
+<div id="chart1"></div>
