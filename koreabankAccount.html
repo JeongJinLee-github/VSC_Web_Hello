@@ -1,0 +1,41 @@
+<link type="text/css" rel="stylesheet" href="/css/openapi/c3.min.css"/>
+<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/js/d3.min.js"></script>
+<script type="text/javascript" src="/js/c3.min.js"></script>
+<script type="text/javascript">
+	$.ajaxPrefilter('json', function(options, orig, jqXHR){
+		return 'jsonp';
+	});
+	$.ajax({
+		url         : 'http://ecos.bok.or.kr/api/StatisticSearch/3BD37QCTTUI5XTKXDNGI/json/kr/1/10/010Y002/MM/201901/201906/AAAA11/',
+		type        : 'GET',
+		dataType    : 'json',
+		success     : function (result) {
+			makePieChart(result);
+		},
+		error       : function (result) {
+			console.log("error >> " + $(result).text());
+		}
+	});
+	
+	function makePieChart(jsonData) {
+		var rows = jsonData.StatisticSearch.row;
+		var datas = new Array();
+		
+		for (var row in rows) {
+			var temp = new Array();
+			temp.push(rows[row].TIME);
+			temp.push(rows[row].DATA_VALUE);
+			datas.push(temp);
+		}
+		
+		var chart = c3.generate({
+			bindto: '#chart2',
+			data : {
+				type : 'pie',
+				columns : datas
+			}
+		});
+	}
+</script>
+<div id="chart2"></div>
