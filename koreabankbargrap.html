@@ -1,55 +1,59 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>한국은행 경제통계 시스템</title>
 </head>
+
 <body>
-	<script
-	src="http://code.jquery.com/jquery-3.5.1.js"
-	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-	crossorigin="anonymous"></script>	
+	<script src="http://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="/jquerymobile/jquery-1.8.3.min.js"></script>
-<script type="text/javascript">
-	$.ajaxPrefilter('json', function(options, orig, jqXHR){
-		return 'jsonp';
-	});
-	$.ajax({
-		url         : 'http://ecos.bok.or.kr/api/StatisticSearch/3BD37QCTTUI5XTKXDNGI/json/kr/1/10/010Y002/MM/201901/202003/AAAA11/',
-		type        : 'GET',
-		dataType    : 'json',
-		success     : function (result) {
-			makeTable(result);
-		},
-		error       : function (result) {
-			console.log("error >> " + $(result).text());
+	<script type="text/javascript">
+		$.ajaxPrefilter('json', function (options, orig, jqXHR) {
+			return 'jsonp';
+		});
+		$.ajax({
+			url: 'http://ecos.bok.or.kr/api/StatisticSearch/3BD37QCTTUI5XTKXDNGI/json/kr/1/10/010Y002/MM/201901/202005/AAAA11/',
+			type: 'GET',
+			dataType: 'json',
+			success: function (result) {
+				makeTable(result);
+			},
+			error: function (result) {
+				console.log("error >> " + $(result).text());
+			}
+		});
+
+		function makeTable(jsonData) {
+			var rows = jsonData.StatisticSearch.row;
+
+			$data = "";
+
+			for (var idx in rows) {
+				$data += '<tr><td>' + rows[idx].TIME + '</td><td>' + rows[idx].DATA_VALUE + '</td></tr>';
+			}
+
+			$('#table').append($data);
 		}
-	});
-	
-	function makeTable(jsonData) {
-		var rows = jsonData.StatisticSearch.row;
-		
-		$data = "";
-		
-		for (var idx in rows) {
-			$data += '<tr><td>' + rows[idx].TIME + '</td><td>' + rows[idx].DATA_VALUE + '</td></tr>';
-		}
-		
-		$('#table').append($data);
-	}
-</script>
-<div align="center">
-	<table style="border:3px solid; text-align:center;">
-		<colgroup><col width="200"/><col width="200"/></colgroup>
-		<thead>
-			<th>년도</th>
-			<th>값</th>
-		</thead>
-		<tbody id="table">
-		</tbody>
-	</table>
-</div>
-		
+	</script>
+	<div align="center">
+		<table style="border:3px solid; text-align:center;">
+			<colgroup>
+				<col width="200" />
+				<col width="200" />
+			</colgroup>
+			<thead>
+				<th>년도</th>
+				<th>값</th>
+			</thead>
+			<tbody id="table">
+			</tbody>
+		</table>
+	</div>
+
 </body>
+
 </html>
