@@ -31,6 +31,9 @@
         height: 50px;
         font-size: 25px;
         cursor: pointer;
+        background: darkolivegreen;
+        border: darkorchid;
+        color :white;
     }
     .textview{
         width: 190px;
@@ -44,16 +47,18 @@
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
     }
-    #bg{
-        background: linear-gradient(to right, red, blue);
-        height: 100%;
+    .bg{
+        width:1200px;
+        height:1200px;
+        background: linear-gradient(to right, rgba(255, 0, 0, 0.794), rgba(0, 0, 255, 0.794) );
+   
     }
     </style>
 </head>
 <body>
-    <div class="bg"></div>
+    <div class="bg">
     <div class="main">
-        <form name="form" id="bg">
+        <form name="form">
             <input class="textview" name="textview">
         </form>
         <table>
@@ -87,6 +92,7 @@
             </tr>
         </table>
     </div>
+</div>
     
 </body>
 </html>
