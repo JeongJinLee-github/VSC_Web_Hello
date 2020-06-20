@@ -67,6 +67,7 @@ function printMessage(){
     // console.log(childMessage); //error
     return undefined; // 생략가능
 }
+console.log('function hoisting Example : ' + sum(5,7));
 printMessage();
 
 // 6. Return a value
@@ -92,3 +93,76 @@ function upgradeUser(user){
     }
         // long upgrade logic...
 }
+
+// First-class function
+// functions are treated like any other variable
+// can be assigned as a value to variable
+// can be passed as an argument to other functions.
+// can be returned by another function
+
+// 1. Function expressin
+// a function declaration can be called earlier than it is defiend. (hoisted)
+// a function expression is created when the execution reaches it.
+const print = function(){   // anonymous function
+    console.log('print');
+};
+print();
+const printAgain = print;
+printAgain();
+const sumAgain = sum;
+console.log(sumAgain(1,3));
+
+// 2. Callback functionk using function expression
+
+function randomQuiz(answer, printYes, printNo){
+    if(answer === 'love you'){
+        printYes();
+    } else {
+        printNo();
+    }
+}
+// anonymous function
+const printYes = function() {
+    console.log('yes');
+};
+
+// named fuction
+// better debugging in debugger's stack traces
+// recursions
+
+// const printNo = function () { // "print" 생략 가능
+const printNo = function print () {
+    console.log('no');
+//  print(); //recursions call
+};
+randomQuiz('wrong', printYes, printNo);
+randomQuiz('love you', printYes, printNo);
+
+// const simplePrint = function() {
+//  console.log('simplePrint');    
+// };
+
+// Arrow function
+// always anonymous
+const simplePrint = function() {
+    console.log('simplePrint');
+};
+const simplePrint = () => console.log('simplePrint');
+const add = (a, b) => a + b;
+const simpleMultiply = (a,b) => {
+    //do something more
+    return a * b;
+};
+simplePrint();
+console.log(add(5,8));
+console.log(simpleMultiply(3,9));
+
+// IIFE: Immediately Invoked Function Expression
+(
+    function hello() {
+        console.log('IIFE')
+    }
+    hello();
+);
+
+// hello();
