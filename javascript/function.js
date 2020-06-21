@@ -9,6 +9,8 @@
 // naming: doSometing, command, verb
 // e.g createCardAndPoint -> createCard, createPoint
 // function is object in JS
+"use strict"
+
 function printHello(){
     console.log('Hello !!'); 
 }
@@ -144,9 +146,9 @@ randomQuiz('love you', printYes, printNo);
 
 // Arrow function
 // always anonymous
-const simplePrint = function() {
-    console.log('simplePrint');
-};
+// const simplePrint = function() {
+//     console.log('simplePrint');
+// };
 const simplePrint = () => console.log('simplePrint');
 const add = (a, b) => a + b;
 const simpleMultiply = (a,b) => {
@@ -158,11 +160,7 @@ console.log(add(5,8));
 console.log(simpleMultiply(3,9));
 
 // IIFE: Immediately Invoked Function Expression
-(
-    function hello() {
+(function hello() {
         console.log('IIFE')
     }
-    hello();
-);
-
-// hello();
+)();
