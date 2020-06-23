@@ -11,13 +11,13 @@
 // function is object in JS
 "use strict"
 
-function printHello(){
-    console.log('Hello !!'); 
+function printHello() {
+    console.log('Hello !!');
 }
 
-printHello(); 
+printHello();
 
-function log(message){
+function log(message) {
     console.log(message);
 }
 log('luck@');
@@ -26,16 +26,16 @@ log(1234567);
 // 2. Parmeters
 // premitive parameters: passed by value
 // object parameters: passed by reference
-function changeName(obj){
+function changeName(obj) {
     obj.name = 'coder'
 }
-const member7 = {name : 'jeongjin'};
+const member7 = { name: 'jeongjin' };
 console.log(member7);
 changeName(member7);
 console.log(member7);
 
 // 3. Default parameters (added in ES6)
-function showMessage(message, from = 'unknown'){
+function showMessage(message, from = 'unknown') {
     // if(from === undefined){
     //     from = 'unknown';
     // }
@@ -44,56 +44,56 @@ function showMessage(message, from = 'unknown'){
 showMessage('Hi!');
 
 // 4. Rest parameters (added in ES6)
-function printAll(...args){
-    for (let i = 0; i < args.length; i++){
-        console.log(args[i]);        
+function printAll(...args) {
+    for (let i = 0; i < args.length; i++) {
+        console.log(args[i]);
     }
-    for(const arg of args){
+    for (const arg of args) {
         console.log(arg);
     }
     args.forEach((arg) => console.log(arg));
 }
 printAll('dream', 'coding', 'JeongJin');
-printAll('love', 'kiss', 'badroom','dipkiss');
+printAll('love', 'kiss', 'badroom', 'dipkiss');
 
 // 5. Variable scope
 let globalMessage = 'global'; // gloval variable
-function printMessage(){
+function printMessage() {
     let message = 'hello';
     console.log(message); // local variable
     console.log(globalMessage); // global variable
-    function printAnother(){
+    function printAnother() {
         console.log(message); // local variable
         let childMessage = 'childHello';
     }
     // console.log(childMessage); //error
     return undefined; // 생략가능
 }
-console.log('function hoisting Example : ' + sum(5,7));
+console.log('function hoisting Example : ' + sum(5, 7));
 printMessage();
 
 // 6. Return a value
-function sum(a,b){
+function sum(a, b) {
     return a + b;
 
 }
-const result = sum(1,2);  //3
+const result = sum(1, 2);  //3
 console.log(`sum: ${result}`);
 
 // 7. Early return, early exit
 // bad example code
-function upgradeUser(user){
-    if (user.point > 10){
+function upgradeUser(user) {
+    if (user.point > 10) {
         // long upgrade logic...
     }
 }
 
 // good example code
-function upgradeUser(user){
-    if (user.point <= 10){
+function upgradeUser(user) {
+    if (user.point <= 10) {
         return;
     }
-        // long upgrade logic...
+    // long upgrade logic...
 }
 
 // First-class function
@@ -105,26 +105,26 @@ function upgradeUser(user){
 // 1. Function expressin
 // a function declaration can be called earlier than it is defiend. (hoisted)
 // a function expression is created when the execution reaches it.
-const print = function(){   // anonymous function
+const print = function () {   // anonymous function
     console.log('print');
 };
 print();
 const printAgain = print;
 printAgain();
 const sumAgain = sum;
-console.log(sumAgain(1,3));
+console.log(sumAgain(1, 3));
 
 // 2. Callback functionk using function expression
 
-function randomQuiz(answer, printYes, printNo){
-    if(answer === 'love you'){
+function randomQuiz(answer, printYes, printNo) {
+    if (answer === 'love you') {
         printYes();
     } else {
         printNo();
     }
 }
 // anonymous function
-const printYes = function() {
+const printYes = function () {
     console.log('yes');
 };
 
@@ -133,9 +133,9 @@ const printYes = function() {
 // recursions
 
 // const printNo = function () { // "print" 생략 가능
-const printNo = function print () {
+const printNo = function print() {
     console.log('no');
-//  print(); //recursions call
+    //  print(); //recursions call
 };
 randomQuiz('wrong', printYes, printNo);
 randomQuiz('love you', printYes, printNo);
@@ -151,16 +151,44 @@ randomQuiz('love you', printYes, printNo);
 // };
 const simplePrint = () => console.log('simplePrint');
 const add = (a, b) => a + b;
-const simpleMultiply = (a,b) => {
+const simpleMultiply = (a, b) => {
     //do something more
     return a * b;
 };
 simplePrint();
-console.log(add(5,8));
-console.log(simpleMultiply(3,9));
+console.log(add(5, 8));
+console.log(simpleMultiply(3, 9));
 
 // IIFE: Immediately Invoked Function Expression
 (function hello() {
-        console.log('IIFE')
-    }
+    console.log('IIFE')
+}
 )();
+
+// Fun Quiz time♥
+// function calculate(command, a, b)
+// command: add, substract, divide, multiply, remainder
+
+function calculate(command, a, b) {
+    switch (command) {
+        case 'add':
+            return a + b;
+        case 'substract':
+            return a - b;
+        case 'divide':
+            return a / b;
+        case 'multiply':
+            return a * b;
+        case 'remainder':
+            return a % b;
+        default:
+            throw Error('unknown command');
+    }
+}
+
+console.log(calculate('add', 5, 7));
+console.log(calculate('substract', 5, 7));
+console.log(calculate('multiply', 5, 7));
+console.log(calculate('divide', 5, 7));
+console.log(calculate('remainder', 5, 7));
+console.log(calculate('what', 5, 7));

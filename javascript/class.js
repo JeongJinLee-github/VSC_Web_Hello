@@ -112,6 +112,10 @@ class Triangle extends Shape {    // extends is Inheritance
     getArray() {                  // overriding
         return this.width * this.height / 2;
     }
+
+    toString() {
+        return `Trangle : color: ${this.color}`
+    }
 }  
 
 const rectangle = new Rectangle(20, 30, 'blue');
@@ -128,3 +132,4 @@ console.log(triangle instanceof Rectangle);
 console.log(triangle instanceof Triangle);
 console.log(triangle instanceof Shape);
 console.log(triangle instanceof Object);
+console.log(triangle.toString());
