@@ -2,7 +2,7 @@
 // one of the JavaScript's data types.
 // a collection of related data and/or functionality.
 // Nearly all objects in JavaScript are instances of Objects
-
+'use strict'
 // 1. Litterals and properties
 
 // const name = 'Jin';
