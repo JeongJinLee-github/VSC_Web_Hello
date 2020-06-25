@@ -21,8 +21,27 @@ printImmediately(() => console.log('hello'));
 function printWithDelay(print, timeout) {
     setTimeout(print, timeout);
 }
+function prtOut(outMsg) {
+    console.log(outMsg);
+}
+function prtOutAlert(outMsg) {
+    alert(outMsg);
+}
 
-printWithDelay(() => console.log('async callback'),20);
+printWithDelay(() => console.log('async callback after 40s'),40);   // ASynchronous callback
+printWithDelay(prtOut('sync callback after 50s'),50);                  // Synchronous
+printWithDelay(() => console.log('async callback after 20s'),20);   // ASynchronous callback
+printWithDelay(prtOut('sync callback after 30s'),30);                  // Synchronous
+printWithDelay(function prtOut2() {                                       // ASynchronous callback
+        console.log('async callback after 25s');},25);
+
+printWithDelay(() => alert('async callback after 40s'),40);            // ASynchronous callback
+printWithDelay(prtOutAlert('sync callback after 50s'),50);                 // Synchronous
+printWithDelay(() => alert('async callback after 20s'),20);            // ASynchronous callback
+printWithDelay(prtOutAlert('sync callback after 30s'),30);                 // Synchronous
+printWithDelay(function prtOut2() {                                       // ASynchronous callback
+        alert('async callback after 25s');},25);
+
 
 // Callback Hell example
 class UserStorage {
@@ -34,7 +53,7 @@ class UserStorage {
             ) {
                 onSuccess(id);
             } else {
-                onError(new Error('not found'));
+                onError(`'not found id(${id}) or miss match password(${password})'`);
             }
         }, 1000);
     }
@@ -68,7 +87,8 @@ userStorage.loginUser(
             }
         );
     },
-    error => {
-        console.log(error);
+    errorMsg => {
+        console.log(new Error(`Error Message >> ${errorMsg}`));
     }
 );
+for(let step=0; step<=10; step++) {console.log(step);}
