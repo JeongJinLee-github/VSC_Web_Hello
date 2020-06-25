@@ -47,3 +47,31 @@ promise
 .finally(() => {
     console.log(`finally Msg(${'finally message'})`);
 })
+
+// 3. Promise chaining
+const fetchNumber = new Promise((resolve, reject) => {
+    // setTimeout(() => resolve(1), 1000);
+    setTimeout(() => reject(1), 1000);
+});
+fetchNumber
+.then(num => num * 2)
+.then(num => num * 3)
+.then(num => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => resolve(num - 1), 1000);
+    });
+})
+.then(num => {
+    console.log(`then Msg(${num})`);
+});
+
+// fetchNumber 
+// .then(value => {
+//     console.log(`then Msg(${value})`);
+// })
+// .catch(error => {
+//     console.log(`catch Msg(${error})`);
+// })
+// .finally(() => {
+//     console.log(`finally Msg(${'fetchNumber finally message'})`);
+// })
