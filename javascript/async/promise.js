@@ -51,7 +51,7 @@ promise
 // 3. Promise chaining
 const fetchNumber = new Promise((resolve, reject) => {
     // setTimeout(() => resolve(1), 1000);
-    setTimeout(() => reject(1), 1000);
+    setTimeout(() => reject('error Calc'), 1000);
 });
 fetchNumber
 .then(num => num * 2)
@@ -62,16 +62,45 @@ fetchNumber
     });
 })
 .then(num => {
-    console.log(`then Msg(${num})`);
-});
+    console.log(`fetchNumber then Msg(${num})`);
+})
+.catch(error => {
+    console.log(`fetchNumber catch Msg(${error})`);
+})
+.finally(() => {
+    console.log(`fetchNumber finally Msg(${'finally message'})`);
+})
 
-// fetchNumber 
-// .then(value => {
-//     console.log(`then Msg(${value})`);
-// })
-// .catch(error => {
-//     console.log(`catch Msg(${error})`);
-// })
-// .finally(() => {
-//     console.log(`finally Msg(${'fetchNumber finally message'})`);
-// })
+// 4. Error Handling
+const getHen = () =>
+    new Promise((resolve, reject) => {
+        setTimeout(() => resolve('🐓'), 1000);
+    });
+const getEgg = hen =>
+    new Promise((resolve, reject) => {
+        setTimeout(() => resolve(`${hen} => 🥚`), 700);
+    });
+const cook = egg =>
+    new Promise((resolve, reject) => {
+        setTimeout(() => resolve(`${egg} => 🍳`), 800);
+    });
+
+    getHen()
+    .then(hen => getEgg(hen))
+    .then(egg => cook(egg))
+    .then(meal => console.log(meal));
+
+// const getHen =  new Promise((resolve, reject) => {
+//         setTimeout(() => resolve('🐓'), 1000);
+//     });
+// const getEgg(hen) =  new Promise((resolve, reject) => {
+//         setTimeout(() => resolve(`${hen} => 🥚`), 1000);
+//     });
+// const cook(egg) = new Promise((resolve, reject) => {
+//         setTimeout(() => resolve(`${egg} => 🍳`), 1000);
+//     });
+
+//     getHen()
+//     .then(hen => getEgg(hen))
+//     .then(egg => cook(egg))
+//     .then(meal => console.log(meal));
