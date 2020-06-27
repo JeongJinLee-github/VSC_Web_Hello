@@ -16,18 +16,18 @@ function plus(a, b, callback) {
     callback(a,b,sum, '합계');
 }
   
-  function prt(x, y, result, msg) {  // 콜백 함수로 사용할 함수 정의
+function prt(x, y, result, msg) {  // 콜백 함수로 사용할 함수 정의
     console.log(msg,`${x} + ${y} = ${result}`);
-  }                 
+ }                 
   
 plus(5, 7, (x, y, result, msg) => { console.log(msg,`${x} + ${y} = ${result}`);});
 plus(5, 7, function(x, y, result, msg) { console.log(msg,`${x} + ${y} = ${result}`);});
 plus(5, 7, function prt(x, y, result, msg) { console.log(msg,`${x} + ${y} = ${result}`);});
 prt(3,5,3+5,'결과');
 
-function multi(callback) {
+function multi(delaytime, name, callback) {
     // setTimeout((message, x) => callback('방가!!','정미'), 2000);
-    setTimeout(() => callback('방가!!','정미'), 2000);
+    setTimeout(() => callback('방가!!',name), delaytime);
 }
 
-multi((msg, val) => {console.log(val, msg)});
+multi(500, '정미', (msg, val) => {console.log(val, msg)});

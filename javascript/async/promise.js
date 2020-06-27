@@ -49,13 +49,32 @@ promise
 })
 
 // 3. Promise chaining
-const fetchNumber = new Promise((resolve, reject) => {
-    // setTimeout(() => resolve(1), 1000);
-    setTimeout(() => reject('error Calc'), 1000);
-});
+
+const fetchNumber = new Promise(selectOut);
+function selectOut(resolve, reject){
+    setTimeout(() => resolve(1), 1000);
+    // setTimeout(() => reject('error Calc'), 1000);
+}
+
+// const fetchNumber = new Promise((resolve, reject) => {
+//     // setTimeout(() => resolve(1), 1000);
+//     setTimeout(() => reject('error Calc'), 1000);
+// });
+
+function multiAdd(num) {
+    num = num * 3;
+    return num;
+}
+
 fetchNumber
 .then(num => num * 2)
-.then(num => num * 3)
+// .then(num => num * 3)
+// .then((num) => num * 3)
+// .then(function(num) { num *= 3;
+// return num; })
+// .then(function(num) { num = num * 3;
+// return num;})
+.then(num => multiAdd(num))
 .then(num => {
     return new Promise((resolve, reject) => {
         setTimeout(() => resolve(num - 1), 1000);
@@ -90,17 +109,24 @@ const cook = egg =>
     .then(egg => cook(egg))
     .then(meal => console.log(meal));
 
-// const getHen =  new Promise((resolve, reject) => {
+// const getHen =  new Promise(function(resolve, reject) {
+//     setTimeout(() => resolve('🐓'), 1000);
+// });
+
+// const getHen =  new Promise(firstTime);
+// function firstTime(resolve, reject) {
 //         setTimeout(() => resolve('🐓'), 1000);
-//     });
-// const getEgg(hen) =  new Promise((resolve, reject) => {
-//         setTimeout(() => resolve(`${hen} => 🥚`), 1000);
-//     });
-// const cook(egg) = new Promise((resolve, reject) => {
-//         setTimeout(() => resolve(`${egg} => 🍳`), 1000);
+//     };
+// const getEgg =   new Promise(hen);
+// function hen(resolve, reject)  {
+//         setTimeout(() => resolve(`${hen} => 🥚`), 700);
+//     };
+// const cook = egg =>
+//     new Promise((resolve, reject) => {
+//         setTimeout(() => resolve(`${egg} => 🍳`), 800);
 //     });
 
-//     getHen()
+//     getHen
 //     .then(hen => getEgg(hen))
 //     .then(egg => cook(egg))
 //     .then(meal => console.log(meal));
