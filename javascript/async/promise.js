@@ -91,10 +91,32 @@ fetchNumber
 })
 
 // 4. Error Handling
-const getHen = () =>
-    new Promise((resolve, reject) => {
-        setTimeout(() => resolve('🐓'), 1000);
-    });
+// const getHen = () =>
+//     new Promise((resolve, reject) => {
+//         setTimeout(() => resolve('🐓'), 1000);
+//     });
+// const getEgg = hen =>
+//     new Promise((resolve, reject) => {
+//         setTimeout(() => resolve(`${hen} => 🥚`), 700);
+//     });
+// const cook = egg =>
+//     new Promise((resolve, reject) => {
+//         setTimeout(() => resolve(`${egg} => 🍳`), 800);
+//     });
+
+//     getHen()
+//     .then(hen => getEgg(hen))
+//     .then(egg => cook(egg))
+//     .then(meal => console.log(meal));
+
+const getHen =  new Promise(function(resolve, reject) {
+    setTimeout(() => resolve('🐓'), 1000);
+});
+
+// const getHen =  new Promise(firstTime);
+// function firstTime(resolve, reject) {
+//         setTimeout(() => resolve('🐓'), 1000);
+//     };
 const getEgg = hen =>
     new Promise((resolve, reject) => {
         setTimeout(() => resolve(`${hen} => 🥚`), 700);
@@ -104,29 +126,7 @@ const cook = egg =>
         setTimeout(() => resolve(`${egg} => 🍳`), 800);
     });
 
-    getHen()
+    getHen
     .then(hen => getEgg(hen))
     .then(egg => cook(egg))
     .then(meal => console.log(meal));
-
-// const getHen =  new Promise(function(resolve, reject) {
-//     setTimeout(() => resolve('🐓'), 1000);
-// });
-
-// const getHen =  new Promise(firstTime);
-// function firstTime(resolve, reject) {
-//         setTimeout(() => resolve('🐓'), 1000);
-//     };
-// const getEgg =   new Promise(hen);
-// function hen(resolve, reject)  {
-//         setTimeout(() => resolve(`${hen} => 🥚`), 700);
-//     };
-// const cook = egg =>
-//     new Promise((resolve, reject) => {
-//         setTimeout(() => resolve(`${egg} => 🍳`), 800);
-//     });
-
-//     getHen
-//     .then(hen => getEgg(hen))
-//     .then(egg => cook(egg))
-//     .then(meal => console.log(meal));
