@@ -51,9 +51,9 @@ promise
 // 3. Promise chaining
 
 const fetchNumber = new Promise(selectOut);
-function selectOut(resolve, reject){
-    setTimeout(() => resolve(1), 1000);
-    // setTimeout(() => reject('error Calc'), 1000);
+    function selectOut(resolve, reject){
+        setTimeout(() => resolve(1), 1000);
+     // setTimeout(() => reject('error Calc'), 1000);
 }
 
 // const fetchNumber = new Promise((resolve, reject) => {
@@ -109,24 +109,57 @@ fetchNumber
 //     .then(egg => cook(egg))
 //     .then(meal => console.log(meal));
 
-const getHen =  new Promise(function(resolve, reject) {
-    setTimeout(() => resolve('🐓'), 1000);
-});
+// const getHen =  new Promise(function(resolve, reject) {
+//     setTimeout(() => resolve('🐓'), 1000);
+// });
 
 // const getHen =  new Promise(firstTime);
 // function firstTime(resolve, reject) {
 //         setTimeout(() => resolve('🐓'), 1000);
 //     };
+// const getEgg = hen =>
+//     new Promise((resolve, reject) => {
+//         setTimeout(() => resolve(`${hen} => 🥚`), 700);
+//     });
+// const cook = egg => new Promise((resolve, reject) => {
+//         console.log('egg');
+//         setTimeout(() => resolve(`${egg} => 🍳`), 800);
+//     });
+// const cook = egg =>
+//     new Promise((resolve, reject) => {
+//         setTimeout(() => resolve(`${egg} => 🍳`), 800);
+//     });
+
+    // getHen
+    // .then(function(hen) {
+    //     console.log(hen);
+    //     return getEgg(hen)})
+    // .then(function(egg) {
+    //     console.log(egg);
+    //     return cook(egg)})
+    // .then(function(meal) {
+    //     console.log(meal)});
+
+    const getHen = () =>
+    new Promise((resolve, reject) => {
+        setTimeout(() => resolve('🐓'), 1000);
+    });
 const getEgg = hen =>
     new Promise((resolve, reject) => {
-        setTimeout(() => resolve(`${hen} => 🥚`), 700);
+        // setTimeout(() => resolve(`${hen} => 🥚`), 700);
+        setTimeout(() => reject(new Error(`error!! ${hen} => 🥚`)), 700);
     });
 const cook = egg =>
     new Promise((resolve, reject) => {
         setTimeout(() => resolve(`${egg} => 🍳`), 800);
     });
 
-    getHen
-    .then(hen => getEgg(hen))
-    .then(egg => cook(egg))
-    .then(meal => console.log(meal));
+// getHen().then(getEgg).then(cook).then(console.log);
+getHen() //
+    .then(getEgg)
+    .catch(error => {
+        return '🍔';
+    })
+    .then(cook)
+    .then(console.log)
+    .catch(console.log)    
