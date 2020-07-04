@@ -1,0 +1,18 @@
+.container {
+    background: beige;
+    height: 100vh;
+}
+
+.item {
+
+}
+.item1 { background: brown;}
+.item2 { background: rgb(165, 42, 124);}
+.item3 { background: rgb(136, 42, 165);}
+.item4 { background: rgb(116, 42, 165);}
+.item5 { background: rgb(65, 42, 165);}
+.item6 { background: rgb(42, 54, 165);}
+.item7 { background: rgb(42, 147, 165);}
+.item8 { background: rgb(42, 165, 155);}
+.item9 { background: rgb(42, 165, 52);}
+.item10 { background: rgb(118, 165, 42);}

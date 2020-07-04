@@ -1,0 +1,61 @@
+/* select {
+    porperty : value;
+} */
+* {
+    color: rgb(226, 43, 180);
+}
+li {
+    color: blue;
+}
+li#special {
+    color: red
+}
+/* #special {
+    color: red
+} */
+.red {
+    width: 100px;
+    height: 100px;
+    /* padding: 20px 30px 40px 50px; */
+    /* padding: 20px 30px; */
+    /* padding: 20px 0px; */
+    margin: 20px;
+    padding: 20px;
+    border:  2px dashed red;
+    /* border-width: 10px;
+    border-color: pink;
+    border-style: solid; */
+    background: yellow;
+}
+.blue {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    padding: 20px;
+    border:  2px dashed red;
+    background: blue;
+}
+button:hover {
+    color: blue;
+    background: beige;
+}
+/* a[href="naver.com"] { */
+/* a[href^="naver"] { /* naver로 시작하는 것만 */
+a[href$=".com"] {     /* .com으로 끝나는 것만 */ 
+    color: purple;
+}
+
+div, span {
+    width: 80px;
+    height: 80px;
+    margin: 20px;
+}
+
+div {
+    background: red;
+    display: inline-block;
+}
+span {
+    background: blue;
+    display: block;
+}
