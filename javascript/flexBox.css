@@ -1,10 +1,23 @@
 .container {
-    background: beige;
+    background: rgb(241, 241, 103);
     height: 100vh;
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    /* flex-wrap: wrap-reverse; */
+    flex-wrap: nowrap;
+    /* flex-flow: column nowrap; */
+    /* justify-content: space-between; */
+    justify-content: space-around;
+
+
+    
 }
 
 .item {
-
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
 }
 .item1 { background: brown;}
 .item2 { background: rgb(165, 42, 124);}
