@@ -1,59 +1,71 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>koreaBankBargraph</title>
+  </head>
+  <body>
+    <script
+      src="http://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/jquerymobile/jquery-1.8.3.min.js"
+    ></script>
+    <!-- report table copy -->
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>한국은행 경제통계 시스템</title>
-</head>
+    <link type="text/css" rel="stylesheet" href="/css/openapi/c3.min.css" />
+    <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/js/d3.min.js"></script>
+    <script type="text/javascript" src="/js/c3.min.js"></script>
+    <script type="text/javascript">
+      $.ajaxPrefilter("json", function (options, orig, jqXHR) {
+        return "jsonp";
+      });
+      $.ajax({
+        url:
+          "http://ecos.bok.or.kr/api/StatisticSearch/3BD37QCTTUI5XTKXDNGI/json/kr/1/10/010Y002/MM/201101/201106/AAAA11/",
+        type: "GET",
+        dataType: "json",
+        success: function (result) {
+          makeBarChart(result);
+        },
+        error: function (result) {
+          console.log("error >> " + $(result).text());
+        },
+      });
 
-<body>
-	<script src="http://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-		crossorigin="anonymous"></script>
-	<script type="text/javascript" src="/jquerymobile/jquery-1.8.3.min.js"></script>
-	<script type="text/javascript">
-		$.ajaxPrefilter('json', function (options, orig, jqXHR) {
-			return 'jsonp';
-		});
-		$.ajax({
-			url: 'http://ecos.bok.or.kr/api/StatisticSearch/3BD37QCTTUI5XTKXDNGI/json/kr/1/10/010Y002/MM/201901/202005/AAAA11/',
-			type: 'GET',
-			dataType: 'json',
-			success: function (result) {
-				makeTable(result);
-			},
-			error: function (result) {
-				console.log("error >> " + $(result).text());
-			}
-		});
+      function makeBarChart(jsonData) {
+        var rows = jsonData.StatisticSearch.row;
+        var datas = new Array();
+        var xColumn = new Array();
 
-		function makeTable(jsonData) {
-			var rows = jsonData.StatisticSearch.row;
+        xColumn.push("x");
+        datas.push(rows[0].ITEM_NAME1);
 
-			$data = "";
+        for (var row in rows) {
+          xColumn.push(rows[row].TIME);
+          datas.push(rows[row].DATA_VALUE);
+        }
 
-			for (var idx in rows) {
-				$data += '<tr><td>' + rows[idx].TIME + '</td><td>' + rows[idx].DATA_VALUE + '</td></tr>';
-			}
-
-			$('#table').append($data);
-		}
-	</script>
-	<div align="center">
-		<table style="border:3px solid; text-align:center;">
-			<colgroup>
-				<col width="200" />
-				<col width="200" />
-			</colgroup>
-			<thead>
-				<th>년도</th>
-				<th>값</th>
-			</thead>
-			<tbody id="table">
-			</tbody>
-		</table>
-	</div>
-
-</body>
-
+        var chart = c3.generate({
+          bindto: "#chart1",
+          data: {
+            type: "bar",
+            x: "x",
+            columns: [xColumn, datas],
+          },
+          bar: {
+            width: {
+              radio: 0.5,
+            },
+          },
+        });
+      }
+    </script>
+    <div id="chart1"></div>
+  </body>
 </html>
